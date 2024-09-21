@@ -8,7 +8,7 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
+func Information(w http.ResponseWriter, r *http.Request) {
 	temple, err := template.ParseFiles("templates/Homepage.html")
 	data, er := Func.FetchData("https://groupietrackers.herokuapp.com/api")
 	if er != nil {
@@ -30,5 +30,4 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("ok")
 		return
 	}
-	// w.Write(data)
 }
