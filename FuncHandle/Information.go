@@ -9,23 +9,35 @@ import (
 )
 
 func Information(w http.ResponseWriter, r *http.Request) {
-	temple, err := template.ParseFiles("templates/Homepage.html")
-	data, er := Func.FetchData("https://groupietrackers.herokuapp.com/api")
-	if er != nil {
+	temple, err := template.ParseFiles("templates/InformtionArtist.html")
+	if err != nil {
 		fmt.Println(";;;;;;;")
 		return
 	}
-	// fmt.Println("+++++++++++++",data)
+	val := r.FormValue("name1")
+	if val==""{
 
-	// fmt.Fprint(w, data)
-	// v, er := json.Marshal(data)
-	// var s data
-	// er = json.Unmarshal(v, &s)
-	// if er != nil {
-	// 	return
+	}
+	fmt.Println(val)
+	var A []Func.Art
+	errr := Func.FetchData(c.Artists, &A)
+	// for _, v := range A {
+	// 	if v.Name == val {
+	// 		err = temple.Execute(w, v)
+	// 		if err != nil {
+	// 			fmt.Println("ok")
+	// 			return
+	// 		}
+	// 		break
+
+	// 	}
 	// }
 
-	err = temple.Execute(w, data)
+	if errr != nil {
+		fmt.Println("ok")
+		return
+	}
+	err = temple.Execute(w, A[1].CreationDate)
 	if err != nil {
 		fmt.Println("ok")
 		return

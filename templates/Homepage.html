@@ -6,26 +6,22 @@
     <title>groupie-tracker</title>
 </head>
 <body>
-<div>
+<div >
 <form action="/">
   {{range .}}
-  <div>
-    <a href="/Information"><img src="{{.Image}}" alt="oooooooooooooooooooo"></a>
-    {{.Name}}
-  </div>
+  <div style="display: inline-flex; ">
+    {{.ID}}
+    <a href="/Information" style="display: block;"><img src="{{.Image}}" alt="oooooooooooooooooooo"></a><br>
+    <form action="/Information">
+    <div name="name1"  style="display: block;">
+  <input type="submit" name="name1" value="{{.ID}}">
+
+    </div>
+  </form>
+      </div>
 
   {{end}}
 </form>
 </div>
-
-<div>
- 
-  <form action="/Information">
-    {{range .}}
-    <div>
-      {{.CreationDate}}
-    </div>
-    {{end}}
-      </for</form>
 </body>
 </html>
