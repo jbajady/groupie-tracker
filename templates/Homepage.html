@@ -6,7 +6,28 @@
     <title>groupie-tracker</title>
 </head>
 <body>
-<div >
+  <div style="text-align: center;margin: 5px;">
+    <h1>GROUPIE-TRACKER</h1>
+  </div>
+  <div style="width: 97%;height: 100%;  text-align: center; margin: 10px;">
+    {{range .}}
+    <div style=" display: inline-flex; width: 250px; height: 300px;">
+     
+      <form action="/Information">
+        <div name="name1"  style="display: block; text-align: center; margin: 5px;">
+          <img src="{{.Image}}" alt="oo"><br>
+      <input type="submit" name="name1" value="{{.ID}}">
+      <label for="name1">{{.Name}}</label>
+    
+        </div>
+      </form>
+    </div>
+    {{end}}
+  </div>
+</body>
+</html>
+
+<!-- 
 <form action="/">
   {{range .}}
   <div style="display: inline-flex; ">
@@ -21,7 +42,4 @@
       </div>
 
   {{end}}
-</form>
-</div>
-</body>
-</html>
+</form> -->

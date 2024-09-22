@@ -6,11 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/Information">
-        <div>
-          {{.}}
-        </div>
-     
-          </form>
+    <div>
+      <h1>informtio of artist</h1>
+    </div>
+    <div style="text-align: center;">
+      {{range .}}
+      <h3>{{.Name}}</h3>
+      <img src="{{.Image}}" alt="ok">
+      <h3>a3da lfari9</h3>
+      {{range .Members}}
+      <p>{{.}}</p>
+      {{end}}
+      <h3>creationdata</h3>
+      <p>{{.CreationDate}}</p>
+      <h3>frist album</h3>
+      <P>{{.FirstAlbum }}</P>
+{{end}}
+    </div>
 </body>
 </html>
+
+<!-- <form action="/Information">
+  <div>
+    {{.}}
+  </div>
+
+    </form> -->
