@@ -3,41 +3,34 @@ package Handle
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	Func "GroupieTracker/Ressources"
 )
 
 func Information(w http.ResponseWriter, r *http.Request) {
-	temple, err := template.ParseFiles("templates/InformtionArtist.html")
+	temple, err := template.ParseFiles("./templates/InformtionArtist.html")
 	if err != nil {
 		fmt.Println(";;;;;;;")
 		return
 	}
 	val := r.FormValue("name1")
-	if val==""{
-
-	}
-	fmt.Println(val)
-	var A []Func.Art
-	errr := Func.FetchData(c.Artists, &A)
-	// for _, v := range A {
-	// 	if v.Name == val {
-	// 		err = temple.Execute(w, v)
-	// 		if err != nil {
-	// 			fmt.Println("ok")
-	// 			return
-	// 		}
-	// 		break
-
-	// 	}
-	// }
-
-	if errr != nil {
-		fmt.Println("ok")
+	IdArtest, err := strconv.Atoi(val)
+	if err != nil {
+		fmt.Print("atoi")
 		return
 	}
-	err = temple.Execute(w, A[1].CreationDate)
+	Func.GenriateData(IdArtest)
+
+	DATA := Func.DataFinal{
+		Artiste:  Func.Artists[IdArtest-1], // Artist data
+		Relation: Func.Relation,            // Relation data
+		Location: Func.Location,
+		Date:     Func.Date,
+	}
+	fmt.Println(DATA.Date)
+	err = temple.Execute(w, DATA)
 	if err != nil {
 		fmt.Println("ok")
 		return
