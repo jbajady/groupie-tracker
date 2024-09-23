@@ -15,8 +15,6 @@ func FetchData(url string, c interface{}) error {
 	if err != nil {
 		return err
 	}
-	
-
 	er2 := json.Unmarshal(dat, &c)
 	if er2 != nil {
 		return er2

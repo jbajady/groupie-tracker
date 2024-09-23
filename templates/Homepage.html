@@ -13,11 +13,12 @@
     {{range .}}
     <div style=" display: inline-flex; width: 250px; height: 300px;">
      
-      <form action="/Information">
+      <form action="/ArtistHandle" method="get">
         <div name="name1"  style="display: block; text-align: center; margin: 5px;">
           <img src="{{.Image}}" alt="oo"><br>
-      <input type="submit" name="name1" value="{{.ID}}">
-      <label for="name1">{{.Name}}</label>
+      <!-- <input type="submit" name="name1" value="{{.ID}}"> -->
+      <button type="submit" name="id" value="{{.ID}}">{{.Name}}</button>
+      <!-- <label for="name1">{{.Name}}</label> -->
     
         </div>
       </form>

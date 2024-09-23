@@ -1,7 +1,6 @@
 package Handle
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -9,16 +8,25 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
-func Information(w http.ResponseWriter, r *http.Request) {
-	temple, err := template.ParseFiles("./templates/InformtionArtist.html")
-	if err != nil {
-		fmt.Println(";;;;;;;")
+func ArtistHandle(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/ArtistHandle" {
+		ErrorHandle(w, http.StatusNotFound)
 		return
 	}
-	val := r.FormValue("name1")
-	IdArtest, err := strconv.Atoi(val)
+	if r.Method != "GET" {
+		ErrorHandle(w, http.StatusMethodNotAllowed)
+		return
+	}
+	temple, err := template.ParseFiles("./templates/InformtionArtist.html")
 	if err != nil {
-		fmt.Print("atoi")
+		ErrorHandle(w, http.StatusInternalServerError)
+		return
+	}
+	val := r.FormValue("id")
+
+	IdArtest, err := strconv.Atoi(val)
+	if err != nil || IdArtest < 1 || IdArtest > 52 {
+		ErrorHandle(w, http.StatusNotFound)
 		return
 	}
 	Func.GenriateData(IdArtest)
@@ -29,10 +37,9 @@ func Information(w http.ResponseWriter, r *http.Request) {
 		Location: Func.Location,
 		Date:     Func.Date,
 	}
-	fmt.Println(DATA.Date)
 	err = temple.Execute(w, DATA)
 	if err != nil {
-		fmt.Println("ok")
+		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
 }
