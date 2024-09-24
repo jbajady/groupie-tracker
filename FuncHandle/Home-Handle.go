@@ -1,7 +1,7 @@
 package Handle
 
 import (
-	"fmt"
+	"bytes"
 	"net/http"
 	"text/template"
 
@@ -9,7 +9,6 @@ import (
 )
 
 func HomeHandle(w http.ResponseWriter, r *http.Request) {
-
 	if r.URL.Path != "/" {
 		ErrorHandle(w, http.StatusNotFound)
 		return
@@ -20,7 +19,6 @@ func HomeHandle(w http.ResponseWriter, r *http.Request) {
 	}
 	temple, err := template.ParseFiles("templates/Homepage.html")
 	if err != nil {
-		fmt.Println("ok")
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
@@ -29,9 +27,14 @@ func HomeHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
-	err = temple.Execute(w, Func.Artists)
+	var buf bytes.Buffer
+	err = temple.Execute(&buf, Func.Artists)
 	if err != nil {
-		fmt.Println("ok")
+		ErrorHandle(w, http.StatusInternalServerError)
+		return
+	}
+	_, er := w.Write(buf.Bytes())
+	if er != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}

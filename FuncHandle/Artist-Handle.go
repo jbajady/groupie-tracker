@@ -1,6 +1,7 @@
 package Handle
 
 import (
+	"bytes"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -8,8 +9,8 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
-func ArtistHandle(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/ArtistHandle" {
+func ArtistsHandle(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/Artist" {
 		ErrorHandle(w, http.StatusNotFound)
 		return
 	}
@@ -29,16 +30,26 @@ func ArtistHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusNotFound)
 		return
 	}
-	Func.GenriateData(IdArtest)
+	valide := Func.GenriateData(IdArtest)
+	if !valide {
+		ErrorHandle(w, http.StatusInternalServerError)
+		return
+	}
 
 	DATA := Func.DataFinal{
-		Artiste:  Func.Artists[IdArtest-1], // Artist data
-		Relation: Func.Relation,            // Relation data
+		Artiste:  Func.Artists[IdArtest-1],
 		Location: Func.Location,
 		Date:     Func.Date,
+		Relation: Func.Relation,
 	}
-	err = temple.Execute(w, DATA)
+	var buf bytes.Buffer
+	err = temple.Execute(&buf, DATA)
 	if err != nil {
+		ErrorHandle(w, http.StatusInternalServerError)
+		return
+	}
+	_, er := w.Write(buf.Bytes())
+	if er!=nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}

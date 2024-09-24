@@ -10,7 +10,7 @@ import (
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", Handle.HomeHandle)
-	mux.HandleFunc("/ArtistHandle", Handle.ArtistHandle)
+	mux.HandleFunc("/Artist", Handle.ArtistsHandle)
 	fmt.Println("http://localhost:8080")
 	http.ListenAndServe(":8080", mux)
 }
