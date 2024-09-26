@@ -8,10 +8,9 @@ import (
 
 func FetchData(url string, c interface{}) error {
 	data, err := http.Get(url)
-	if err!=nil{
+	if err != nil {
 		return err
 	}
-	json.NewDecoder(data.Body).Decode(c)
 	dat, err := io.ReadAll(data.Body)
 	if err != nil {
 		return err
@@ -20,6 +19,6 @@ func FetchData(url string, c interface{}) error {
 	if er2 != nil {
 		return er2
 	}
-	
+
 	return nil
 }
