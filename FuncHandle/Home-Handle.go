@@ -8,6 +8,7 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
+// / handle path "/" page home
 func HomeHandle(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		ErrorHandle(w, http.StatusNotFound)
