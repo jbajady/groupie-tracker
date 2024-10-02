@@ -9,6 +9,7 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
+// / handles path "Artist"
 func ArtistsHandle(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/Artist" {
 		ErrorHandle(w, http.StatusNotFound)
@@ -49,7 +50,7 @@ func ArtistsHandle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	_, er := w.Write(buf.Bytes())
-	if er!=nil {
+	if er != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
