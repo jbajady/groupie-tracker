@@ -1,11 +1,18 @@
 package Func
 
-func GenriateData(id int) bool{
-	er := FetchData(Artists[id-1].Relations, &Relation)
-	er1 := FetchData(Artists[id-1].Locations, &Location)
-	er2 := FetchData(Artists[id-1].ConcertDates, &Date)
-	if er != nil || er1 != nil || er2 != nil {
+// Fetch All Data  From  Urls
+func GenriateData() bool {
+	er := FetchData(API.Artistes, &Artists)
+	er1 := FetchData(API.Locations, &Relations)
+	er2 := FetchData(API.Dates, &Relations)
+	er3 := FetchData(API.Relation, &Relations)
+	if er != nil || er1 != nil || er2 != nil || er3 != nil {
 		return false
+	}
+	for i, v := range Relations.Index {
+		Artists[i].Date = v.Date
+		Artists[i].Location = v.Location
+		Artists[i].Relation = v.Relation
 	}
 	return true
 }
