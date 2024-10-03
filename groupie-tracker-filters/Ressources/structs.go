@@ -3,7 +3,7 @@ package Func
 var (
 	Artists      []Artest
 	Relations    LocationData
-	Artist      Artest
+	// Artist      Artest
 	SearchArtist []Artest
 	API          APi
 )

@@ -34,12 +34,8 @@ func ArtistsHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
-	Func.Artist = Func.Artists[IdArtest-1]
-	Func.Artist.Location = Func.Relations.Index[IdArtest-1].Location
-	Func.Artist.Date = Func.Relations.Index[IdArtest-1].Date
-	Func.Artist.Relation = Func.Relations.Index[IdArtest-1].Relation
 	var buf bytes.Buffer
-	err = temple.Execute(&buf, Func.Artist)
+	err = temple.Execute(&buf, Func.Artists[IdArtest-1])
 	if err != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return

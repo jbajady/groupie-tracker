@@ -2,6 +2,7 @@ package Handle
 
 import (
 	"bytes"
+	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
@@ -24,6 +25,10 @@ func SearchHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
+	ftr := r.FormValue("fltr")
+	ft := r.FormValue("flt")
+	fmt.Println("mn l max ", ft)
+	fmt.Println("mn max ", ftr)
 	inputtext := r.FormValue("text")
 	Func.SearchOfData(strings.ToLower(strings.TrimSpace(inputtext)))
 	var buf bytes.Buffer

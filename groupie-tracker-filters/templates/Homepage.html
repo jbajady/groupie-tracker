@@ -9,12 +9,29 @@
   <div style="text-align: center;margin: 5px;">
     <h1>GROUPIE-TRACKER</h1>
     <form action="/Search" method="get">
+      <select name="number">
+        <input type="checkbox" id="num1" name="number" value="1"><label for="num1">1</label>
+        <input type="checkbox" id="num2" name="number" value="2"> <label for="num2">2</label>
+        <input type="checkbox" id="num3" name="number" value="3"><label for="num3">3</label>
+        <input type="checkbox" id="num4" name="number" value="4"><label for="num4">4</label>
+        <input type="checkbox" id="num5" name="number" value="5"><label for="num5">5</label>
+        <input type="checkbox" id="num6" name="number" value="6"><label for="num6">6</label>
+        <input type="checkbox" id="num7" name="number" value="7"><label for="num7">7</label>
+        <input type="checkbox" id="num8" name="number" value="8"><label for="num8">8</label>
+        <input type="checkbox" id="num9" name="number" value="9"><label for="num9">9</label>
+      </select>
       <div class="slider-container">
-        <input type="range" id="yearSlider" min="2023" max="1990" value="1978">
-        <span id="yearValue">1978</span>
+         <div>
+            <span id="yearValue">min</span>
+            <input type="range" id="yearSlider" min="1978" max="2023" name="fltr" oninput="document.getElementById('yearValue').textContent = this.value" >
+         </div>
+         <div>
+            <input type="range" id="yearSlider" min="-2023" max="-1978" name="flt" oninput="document.getElementById('yearValue').textContent = this.value">
+            <span id="yearValue">max</span>
+         </div>
     </div>
     <div>
-      <input type="checkbox" name="text" id=""><label for=""></label>
+      <input type="checkbox" name="text" id="fltr"><label for="fltr"></label>
     </div>
       <input type="text" list="text" name="text">
       
