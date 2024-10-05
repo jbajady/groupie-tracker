@@ -2,9 +2,6 @@ package Func
 
 var (
 	Artists      []Artest
-	Relations    LocationData
-	// Artist      Artest
-	SearchArtist []Artest
 	API          APi
 )
 
@@ -34,3 +31,12 @@ type LocationData struct {
 		Relation map[string][]string `json:"datesLocations"`
 	} `json:"index"`
 }
+// type FormValue struct{
+// 	text r.FormValue
+// 	firstAlbumN string := range Artest.Location {
+			
+// 	firstAlbumP string
+// 	creationDateN string
+// 	creationDateP string
+// 	members string
+// }

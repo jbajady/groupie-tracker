@@ -3,15 +3,13 @@ package Handle
 import (
 	"bytes"
 	"net/http"
-	"strings"
 	"text/template"
 
 	Func "GroupieTracker/Ressources"
 )
 
-// handles GET requests on the /Search path.
-func SearchHandle(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/Search" {
+func Filter(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/filter" {
 		ErrorHandle(w, http.StatusNotFound)
 		return
 	}
@@ -24,16 +22,10 @@ func SearchHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
-	inputtext := r.FormValue("text")
-	var SearchArtist []Func.Artest
-	SearchArtist = Func.SearchOfData((strings.ToLower(strings.TrimSpace(inputtext))), SearchArtist)
 
-
+	filtred := Func.FilterData(r)
 	var buf bytes.Buffer
-	err = temple.Execute(&buf, map[string]interface{}{
-		"SearchArtist": SearchArtist,
-		"Artists":      Func.Artists,
-	})
+	err = temple.Execute(&buf, filtred)
 	if err != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return

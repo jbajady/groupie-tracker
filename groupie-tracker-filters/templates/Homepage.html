@@ -6,35 +6,52 @@
     <title>groupie-tracker</title>
 </head>
 <body>
-  <div style="text-align: center;margin: 5px;">
-    <h1>GROUPIE-TRACKER</h1>
-    <form action="/Search" method="get">
-      <select name="number">
-        <input type="checkbox" id="num1" name="number" value="1"><label for="num1">1</label>
-        <input type="checkbox" id="num2" name="number" value="2"> <label for="num2">2</label>
-        <input type="checkbox" id="num3" name="number" value="3"><label for="num3">3</label>
-        <input type="checkbox" id="num4" name="number" value="4"><label for="num4">4</label>
-        <input type="checkbox" id="num5" name="number" value="5"><label for="num5">5</label>
-        <input type="checkbox" id="num6" name="number" value="6"><label for="num6">6</label>
-        <input type="checkbox" id="num7" name="number" value="7"><label for="num7">7</label>
-        <input type="checkbox" id="num8" name="number" value="8"><label for="num8">8</label>
-        <input type="checkbox" id="num9" name="number" value="9"><label for="num9">9</label>
-      </select>
+  <h1 style="text-align: center;">GROUPIE-TRACKER</h1>
+  <div>
+    <form action="/filter" method="get">
       <div class="slider-container">
-         <div>
-            <span id="yearValue">min</span>
-            <input type="range" id="yearSlider" min="1978" max="2023" name="fltr" oninput="document.getElementById('yearValue').textContent = this.value" >
-         </div>
-         <div>
-            <input type="range" id="yearSlider" min="-2023" max="-1978" name="flt" oninput="document.getElementById('yearValue').textContent = this.value">
-            <span id="yearValue">max</span>
-         </div>
-    </div>
-    <div>
-      <input type="checkbox" name="text" id="fltr"><label for="fltr"></label>
-    </div>
+        <div>
+          <h3>data Creation:</h3>
+           <span id="yearValue">1978</span>
+           <input type="range" id="yearSlider" min="1978" max="2023" name="Creationpositive" value="1978" oninput="document.getElementById('yearValue').textContent = this.value" >
+           <!-- <span id="yearValue">min------ >>max</span> -->
+          <span id="Value">2023</span>
+           <input type="range" id="yearSlider" min="-2023" max="-1978" name="Creationnigativ" value="-2023" oninput="document.getElementById('Value').textContent = this.value*(-1)">
+           <!-- <span id="yearValue">max--- >>min</span> -->
+        </div>
+        <div>
+          <h3>FirstAlbum:</h3>
+          <span id="year">2005</span>
+          <input type="range" id="year" min="1978" max="2023" name="FirstAlbumpositive" value="1978" oninput="document.getElementById('year').textContent = this.value" >
+          <!-- <span id="year">min------ >>max</span> -->
+         <span id="Slider">2023</span>
+          <input type="range" id="Slider" min="-2023" max="-1978" name="FirstAlbumngativ" value="-2023" oninput="document.getElementById('Slider').textContent = this.value*(-1)">
+          <!-- <span id="Slider">max--- >>min</span> -->
+        </div>
+
+   </div>
+      <select name="Members">
+        <input type="checkbox" id="num1" name="Members" value="1"><label for="num1">1</label>
+        <input type="checkbox" id="num2" name="Members" value="2"> <label for="num2">2</label>
+        <input type="checkbox" id="num3" name="Members" value="3"><label for="num3">3</label>
+        <input type="checkbox" id="num4" name="Members" value="4"><label for="num4">4</label>
+        <input type="checkbox" id="num5" name="Members" value="5"><label for="num5">5</label>
+        <input type="checkbox" id="num6" name="Members" value="6"><label for="num6">6</label>
+        <input type="checkbox" id="num7" name="Members" value="7"><label for="num7">7</label>
+        <input type="checkbox" id="num8" name="Members" value="8"><label for="num8">8</label>
+        <input type="checkbox" id="num9" name="Members" value="9"><label for="num9">9</label>
+      </select><br>
+      <input type="text" list="Location" name="text">
+      <datalist id="Location">
+        <option value="gvgvgdd">xcfcvg</option>
+        <option value="gvgvgdd">xcfcvg</option>
+      </datalist>
+      <button type="submit">apply filter</button>
+    </form>
+  </div>
+  <div style="text-align: center;margin: 5px;">
+    <form action="/Search" method="get">
       <input type="text" list="text" name="text">
-      
       <datalist id="text">
         {{range .}}
         <option value="{{.Name}}">Name artistes</option>

@@ -2,6 +2,7 @@ package Func
 
 // Fetch All Data  From  Urls
 func GenriateData() bool {
+	var Relations LocationData
 	er := FetchData(API.Artistes, &Artists)
 	er1 := FetchData(API.Locations, &Relations)
 	er2 := FetchData(API.Dates, &Relations)
