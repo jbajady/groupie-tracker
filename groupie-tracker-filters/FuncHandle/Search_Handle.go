@@ -27,13 +27,13 @@ func SearchHandle(w http.ResponseWriter, r *http.Request) {
 	inputtext := r.FormValue("text")
 	var SearchArtist []Func.Artest
 	SearchArtist = Func.SearchOfData((strings.ToLower(strings.TrimSpace(inputtext))), SearchArtist)
-
+	resulte := Func.SearchResult{
+		Artists: SearchArtist,
+		SearchArtist:      Func.Artists,
+	}
 
 	var buf bytes.Buffer
-	err = temple.Execute(&buf, map[string]interface{}{
-		"SearchArtist": SearchArtist,
-		"Artists":      Func.Artists,
-	})
+	err = temple.Execute(&buf, resulte)
 	if err != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return

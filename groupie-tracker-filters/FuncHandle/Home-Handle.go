@@ -37,8 +37,12 @@ func HomeHandle(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
+	resulte := Func.SearchResult{
+		Artists: Func.Artists,
+		SearchArtist:      Func.Artists,
+	}
 	var buf bytes.Buffer
-	err = temple.Execute(&buf, Func.Artists)
+	err = temple.Execute(&buf, resulte)
 	if err != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return

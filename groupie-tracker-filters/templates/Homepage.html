@@ -12,24 +12,23 @@
       <div class="slider-container">
         <div>
           <h3>data Creation:</h3>
-           <span id="yearValue">1978</span>
-           <input type="range" id="yearSlider" min="1978" max="2023" name="Creationpositive" value="1978" oninput="document.getElementById('yearValue').textContent = this.value" >
+           <span id="yearValue">1900</span>
+           <input type="range" id="yearSlider" min="1900" max="2024" name="Creationpositive" value="1900" oninput="document.getElementById('yearValue').textContent = this.value" >
            <!-- <span id="yearValue">min------ >>max</span> -->
-          <span id="Value">2023</span>
-           <input type="range" id="yearSlider" min="-2023" max="-1978" name="Creationnigativ" value="-2023" oninput="document.getElementById('Value').textContent = this.value*(-1)">
+          <span id="Value">2024</span>
+           <input type="range" id="yearSlider" min="-2024" max="-1900" name="Creationnigativ" value="-2024" oninput="document.getElementById('Value').textContent = this.value*(-1)">
            <!-- <span id="yearValue">max--- >>min</span> -->
         </div>
         <div>
           <h3>FirstAlbum:</h3>
           <span id="year">2005</span>
-          <input type="range" id="year" min="1978" max="2023" name="FirstAlbumpositive" value="1978" oninput="document.getElementById('year').textContent = this.value" >
+          <input type="range" id="year" min="1900" max="2024" name="FirstAlbumpositive" value="1900" oninput="document.getElementById('year').textContent = this.value" >
           <!-- <span id="year">min------ >>max</span> -->
-         <span id="Slider">2023</span>
-          <input type="range" id="Slider" min="-2023" max="-1978" name="FirstAlbumngativ" value="-2023" oninput="document.getElementById('Slider').textContent = this.value*(-1)">
+         <span id="Slider">2024</span>
+          <input type="range" id="Slider" min="-2024" max="-1900" name="FirstAlbumngativ" value="-2024" oninput="document.getElementById('Slider').textContent = this.value*(-1)">
           <!-- <span id="Slider">max--- >>min</span> -->
         </div>
-
-   </div>
+    </div>
       <select name="Members">
         <input type="checkbox" id="num1" name="Members" value="1"><label for="num1">1</label>
         <input type="checkbox" id="num2" name="Members" value="2"> <label for="num2">2</label>
@@ -43,8 +42,11 @@
       </select><br>
       <input type="text" list="Location" name="text">
       <datalist id="Location">
-        <option value="gvgvgdd">xcfcvg</option>
-        <option value="gvgvgdd">xcfcvg</option>
+        {{range .SearchArtist}}
+        {{range .Location}}
+        <option value="{{.}}">name Location</option>
+        {{end}}
+        {{end}}
       </datalist>
       <button type="submit">apply filter</button>
     </form>
@@ -53,7 +55,7 @@
     <form action="/Search" method="get">
       <input type="text" list="text" name="text">
       <datalist id="text">
-        {{range .}}
+        {{range .SearchArtist}}
         <option value="{{.Name}}">Name artistes</option>
           {{range .Members}}
           <option value="{{.}}">name band</option>
@@ -72,7 +74,7 @@
     </form>
   </div>
   <div style="width: 97%;height: 100%;  text-align: center; margin: 10px;">
-    {{range .}}
+    {{range .Artists}}
     <div style=" display: inline-flex; width: 250px; height: 300px;">
      
       <form action="/Artist" method="get">

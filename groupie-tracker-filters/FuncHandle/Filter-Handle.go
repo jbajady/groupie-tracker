@@ -22,10 +22,20 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return
 	}
-
-	filtred := Func.FilterData(r)
+	filtred, err1 := Func.FilterData(r)
+	if err1 != nil {
+		ErrorHandle(w, http.StatusInternalServerError)
+		return
+	}
+	if filtred==nil {
+		filtred=Func.Artists
+	}
+	resulte := Func.SearchResult{
+		Artists:      filtred,
+		SearchArtist: Func.Artists,
+	}
 	var buf bytes.Buffer
-	err = temple.Execute(&buf, filtred)
+	err = temple.Execute(&buf, resulte)
 	if err != nil {
 		ErrorHandle(w, http.StatusInternalServerError)
 		return

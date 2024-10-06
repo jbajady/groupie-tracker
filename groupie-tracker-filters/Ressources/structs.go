@@ -31,10 +31,11 @@ type LocationData struct {
 		Relation map[string][]string `json:"datesLocations"`
 	} `json:"index"`
 }
-// type FormValue struct{
-// 	text r.FormValue
-// 	firstAlbumN string := range Artest.Location {
-			
+type SearchResult struct {
+	SearchArtist []Artest
+	Artists      []Artest
+}
+
 // 	firstAlbumP string
 // 	creationDateN string
 // 	creationDateP string
