@@ -35,9 +35,3 @@ type SearchResult struct {
 	SearchArtist []Artest
 	Artists      []Artest
 }
-
-// 	firstAlbumP string
-// 	creationDateN string
-// 	creationDateP string
-// 	members string
-// }

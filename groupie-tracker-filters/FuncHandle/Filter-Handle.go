@@ -23,12 +23,12 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	filtred, err1 := Func.FilterData(r)
-	if err1 != nil {
-		ErrorHandle(w, http.StatusInternalServerError)
+	if err1 == 2 {
+		ErrorHandle(w, http.StatusBadRequest)
 		return
 	}
-	if filtred==nil {
-		filtred=Func.Artists
+	if len(filtred) == 0 && err1 == 0 {
+		filtred = Func.Artists
 	}
 	resulte := Func.SearchResult{
 		Artists:      filtred,
