@@ -8,7 +8,7 @@ import (
 	Func "GroupieTracker/Ressources"
 )
 
-func Filter(w http.ResponseWriter, r *http.Request) {
+func FilterHandle(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/filter" {
 		ErrorHandle(w, http.StatusNotFound)
 		return

@@ -28,26 +28,18 @@ func FilterData(r *http.Request) ([]Artest, int) {
 	for _, Art := range Artists {
 		Firstalbu := strings.Split(Art.FirstAlbum, "-")
 		FirstAlbume, _ := strconv.Atoi(Firstalbu[2])
-		if firstAlbumMIN <= firstAlbumMax {
 			if FirstAlbume >= firstAlbumMIN && FirstAlbume <= firstAlbumMax {
 				checked = true
-			}
-		} else {
-			if FirstAlbume <= firstAlbumMIN && FirstAlbume >= firstAlbumMax {
+			}else if FirstAlbume <= firstAlbumMIN && FirstAlbume >= firstAlbumMax {
 				checked = true
 			}
-		}
 		if checked {
 			checked = false
-			if creationDateMIN < creationDateMax {
 				if Art.CreationDate >= creationDateMIN && Art.CreationDate <= creationDateMax {
 					checked = true
-				}
-			} else {
-				if Art.CreationDate <= creationDateMIN && Art.CreationDate >= creationDateMax {
+				}else if Art.CreationDate <= creationDateMIN && Art.CreationDate >= creationDateMax {
 					checked = true
 				}
-			}
 			if checked {
 				for _, loc := range Art.Location {
 					if strings.Contains(strings.ToLower(loc), location) {
@@ -58,7 +50,6 @@ func FilterData(r *http.Request) ([]Artest, int) {
 					}
 				}
 			}
-
 			if len(checkbox) != 0 && checked {
 				for _, n := range checkbox {
 					nm, er := strconv.Atoi(n)
@@ -73,12 +64,10 @@ func FilterData(r *http.Request) ([]Artest, int) {
 					}
 				}
 			}
-
 			if checked {
 				filtred = append(filtred, Art)
 				checked = false
 			}
-
 		}
 	}
 	return filtred, 1
