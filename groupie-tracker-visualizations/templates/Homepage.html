@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/Style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <div class="searsh">
+            <div class="title">
+                <h1>groupe-trakr</h1>
+            </div>
+            <div class="inputsearsh">
+                <form action="/Search" method="get">
+                    <input type="text" list="text" name="text" class="text">
+                    <datalist id="text">
+                      {{range .SearchArtist}}
+                      <option value="{{.Name}}">Name artistes</option>
+                        {{range .Members}}
+                        <option value="{{.}}">name band</option>
+                          {{end}}
+                          <option value="{{.CreationDate}}">Creation Date</option>
+                            <option value="{{.FirstAlbum}}">First Album</option>
+                              {{range .Date}}
+                              <option value="{{.}}">date</option>
+                                {{end}}
+                                {{range .Location}}
+                                <option value="{{.}}">name Location</option>
+                                {{end}}
+                                {{end}}
+                    </datalist>
+                      <button type="submit" class="butuon">submit</button>
+                  </form>
+            </div>
+        </div>
+        <div class="filter">
+           <div class="inputflter">
+            <form action="/filter" method="get">
+                <div class="inputflter">
+                  <div>
+                    <h3>Data Creation:</h3>
+                     <span id="yearValue">1900</span>
+                     <input type="range" id="yearSlider" class="hhh" min="1900" max="2024" name="Creationpositive" value="1900" oninput="document.getElementById('yearValue').textContent = this.value" >
+                    <span id="Value">2024</span>
+                     <input type="range" id="yearSlider" min="-2024" max="-1900" name="Creationnigativ" value="-2024" oninput="document.getElementById('Value').textContent = this.value*(-1)">
+                  </div>
+                  <div>
+                    <h3>First Album:</h3>
+                    <span id="year">1900</span>
+                    <input type="range" id="year" min="1900" max="2024" name="FirstAlbumpositive" value="1900" oninput="document.getElementById('year').textContent = this.value" >
+                   <span id="Slider">2024</span>
+                    <input type="range" id="Slider" min="-2024" max="-1900" name="FirstAlbumngativ" value="-2024" oninput="document.getElementById('Slider').textContent = this.value*(-1)">
+                  </div>
+              </div>
+              <div>
+                <h3>Members:</h3>
+                <select name="Members">
+                  <input type="checkbox" id="num1" name="Members" value="1"><label for="num1">1</label>
+                  <input type="checkbox" id="num2" name="Members" value="2"> <label for="num2">2</label>
+                  <input type="checkbox" id="num3" name="Members" value="3"><label for="num3">3</label>
+                  <input type="checkbox" id="num4" name="Members" value="4"><label for="num4">4</label>
+                  <input type="checkbox" id="num5" name="Members" value="5"><label for="num5">5</label>
+                  <input type="checkbox" id="num6" name="Members" value="6"><label for="num6">6</label>
+                  <input type="checkbox" id="num7" name="Members" value="7"><label for="num7">7</label>
+                  <input type="checkbox" id="num8" name="Members" value="8"><label for="num8">8</label>
+                  <input type="checkbox" id="num9" name="Members" value="9"><label for="num9">9</label>
+                </select>
+              </div>
+              <div class="inpttex">
+                <input type="text" list="Location" name="text" class="text">
+                <datalist id="Location">
+                  {{range .SearchArtist}}
+                  {{range .Location}}
+                  <option value="{{.}}">name Location</option>
+                  {{end}}
+                  {{end}}
+                </datalist>
+                <button type="submit" class="butuon">Apply Filter</button>
+              </div>
+              </form>
+           </div>
+         </div> 
+    </div>
+    <div class="continer">
+        {{range .Artists}}
+        <div class="artiste">
+         
+          <form action="/Artist" method="get">
+            <div name="name1"  style="display: block; text-align: center; margin: 5px;">
+              <img src="{{.Image}}" alt="oo"><br>
+          <button type="submit" name="id" value="{{.ID}}">{{.Name}}</button>
+            </div>
+          </form>
+        </div>
+        {{end}}
+      </div>
+</body>
+</html>
