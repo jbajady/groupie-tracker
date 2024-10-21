@@ -1,18 +1,17 @@
 body{
-
-    background: #dad7cd;
-    position: relative;
-    left: 1%;
-    top: 5px;
-
+    background: #edede9;
 }
 .header{
+    margin: auto;
     width: 98%;
     text-align: center;
     background-color: #344e41;
     border-radius: 15px;
     /* margin: 5px; */
     /* text-align: center; */
+}
+::-webkit-scrollbar{
+    display: none;
 }
 .searsh{
     display: flex;
@@ -75,7 +74,7 @@ border-radius: 15px;
     /* text-align: center; */
 } 
 input[type="range"] {
-    -webkit-appearance: none; 
+    /* -webkit-appearance: none;  */
     width: 25%; 
     /* margin: 10px 0; */
     border-radius: 8px;
@@ -87,15 +86,52 @@ h3{
 span{
     color: #dad7cd;
 }
-.continer{
+.continer {
+    margin: auto;
     width: 98%;
     text-align: center;
+    margin-top: 10px;
     background-color: #dad7cd;
     border-radius: 15px;
+    /* padding: 20px;  */
 }
-.artiste{
-    display: inline-flex;
-    width: 30%;
-    height: 300px;
-    border-color: #344e41;
+
+.artiste {
+    background-color: #3a5a40;
+    display: inline-block; 
+    text-align: center;
+    justify-content: space-around;
+    width: 250px; 
+    height: 350px; 
+    margin: 10px; 
+    border-radius: 15px;
+    border: 2px solid #344e41;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease; 
+}
+
+.artiste:hover {
+    transform: translateY(-10px);
+}
+
+.artiste img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px 15px 0 0; 
+}
+
+.artiste button {
+    background-color: #588157;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.artiste button:hover {
+    background-color: #a3b18a;
 }
